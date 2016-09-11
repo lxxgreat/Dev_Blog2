@@ -1,5 +1,6 @@
 # -*- coding: utf8 -*-
-import http
+#import http
+import httplib
 from hashlib import md5 as imd5
 import base64
 import time
@@ -223,7 +224,8 @@ class UpYun(object):
             return None
 
     def _net_worker(self, method, path, data='', headers={}, metadata={}):
-        connection = http.client.HTTPConnection(self.thehost)
+        #connection = http.client.HTTPConnection(self.thehost)
+        connection = httplib.HTTPConnection(self.thehost)
 
         if self.content_md5 != '':
             headers['Content-MD5'] = self.content_md5

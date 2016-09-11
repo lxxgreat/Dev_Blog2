@@ -165,7 +165,6 @@ hr {
   color: #ccc;
   border-color: #ccc;
   /*safari fix*/
-
 }
 a:link {
   color: #3d2d24;
@@ -433,9 +432,9 @@ a:active {
   transition: -moz-transform 0.2s ease-out;
   position: relative;
   top: 0;
-  background-image: -webkit-linear-gradient(#6389c1, #4369a1);
-  background-image: -moz-linear-gradient(#6389c1, #4369a1);
-  background-image: -linear-gradient(#6389c1, #4369a1);
+  background-image: -webkit-linear-gradient(#6389C1, #4369A1);
+  background-image: -moz-linear-gradient(#6389C1, #4369A1);
+  background-image: -linear-gradient(#6389C1, #4369A1);
   height: 42px;
   box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 5px 1px;
   border: 1px solid rgba(53, 85, 131, 0.9);
@@ -644,11 +643,8 @@ ol.commentlist li {
 .board-layout .single-photo a.pin-image {
   background-color: #f2f0f0;
   /*cursor: -webkit-zoom-in;*/
-
   /*cursor: -moz-zoom-in;*/
-
   /*cursor: zoom-in;*/
-
   display: block;
 }
 .board-layout .single-photo a.pin-image img {
@@ -697,12 +693,12 @@ ol.commentlist li {
 pre.prettyprint,
 code.prettyprint {
   display: block;
-  background-color: #333333;
+  background-color: #333;
 }
 pre .nocode,
 code .nocode {
   background-color: none;
-  color: #000000;
+  color: #000;
 }
 pre .str,
 code .str {
@@ -731,12 +727,12 @@ code .lit {
 /* literal - darkred */
 pre .pun,
 code .pun {
-  color: #ffffff;
+  color: #fff;
 }
 /* punctuation */
 pre .pln,
 code .pln {
-  color: #ffffff;
+  color: #fff;
 }
 /* plaintext */
 pre .tag,
@@ -765,7 +761,7 @@ code .dec {
 ol.linenums {
   margin-top: 0;
   margin-bottom: 0;
-  color: #aeaeae;
+  color: #AEAEAE;
 }
 /* IE indents via margin-left */
 li.L0,
@@ -785,7 +781,7 @@ li.L8 {
   }
   pre .str,
   code .str {
-    color: #006600;
+    color: #060;
   }
   pre .kwd,
   code .kwd {
@@ -804,15 +800,15 @@ li.L8 {
   }
   pre .lit,
   code .lit {
-    color: #004444;
+    color: #044;
   }
   pre .pun,
   code .pun {
-    color: #444400;
+    color: #440;
   }
   pre .pln,
   code .pln {
-    color: #000000;
+    color: #000;
   }
   pre .tag,
   code .tag {
@@ -821,11 +817,11 @@ li.L8 {
   }
   pre .atn,
   code .atn {
-    color: #440044;
+    color: #404;
   }
   pre .atv,
   code .atv {
-    color: #006600;
+    color: #060;
   }
 }
 /*
@@ -984,7 +980,6 @@ li.L8 {
 #fancybox-right:hover {
   visibility: visible;
   /* IE6 */
-
 }
 #fancybox-left:hover span {
   left: 20px;

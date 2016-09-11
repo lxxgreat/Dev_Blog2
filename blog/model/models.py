@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 import datetime
-from flask_mongoengine import MongoEngine
+import mongoengine as db
 
-db = MongoEngine()
+# from flask_mongoengine import MongoEngine
+
+# db = MongoEngine()
 
 
 class User(db.Document):

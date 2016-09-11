@@ -11,9 +11,8 @@ from config import Config, SmtpConfig
 from frontend.frontend import frontend
 from frontend.templates import templates
 from admin.admin import admin, User
-from model.models import db
 from model.models import User as UserModel
-
+from flask_mongoengine import MongoEngine
 import logging
 from logging.handlers import SMTPHandler
 from utils.email_util import EncodingFormatter
@@ -22,13 +21,14 @@ from flask_login import LoginManager
 
 from flask_debugtoolbar import DebugToolbarExtension
 
-USED_CONF = 'config.DevelopmentConfig'
+USED_CONF = 'config.ProductionConfig'
 
+db = MongoEngine()
 app = Flask(__name__)
 app.register_blueprint(frontend)
 app.register_blueprint(admin, url_prefix='/admin')
 
-
+app.secret_key = Config.SECRET_KEY
 app.config.from_object(USED_CONF)
 
 login_manager = LoginManager()
@@ -71,7 +71,7 @@ mail_handler = SMTPHandler(
     credentials=(SmtpConfig.USER, SmtpConfig.PASSWORD)
 )
 
-define("port", default=8888, help="run on the given port", type=int)
+define("port", default=1128, help="run on the given port", type=int)
 
 if USED_CONF == 'config.ProductionConfig':
     env = False

@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import re
 import datetime
-from html.parser import HTMLParser
+#from html.parser import HTMLParser
+from HTMLParser import HTMLParser
 from utils.upyun import UpYun
 from config import UpyunConfig
 
@@ -113,4 +114,4 @@ class SiteHelpers(object):
         u = UpYunHelper()
         url = u.up_to_upyun(collection, data, img_name)
 
-        return url
+        return 'success', url

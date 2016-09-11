@@ -276,7 +276,6 @@ textarea:focus {
   /*-webkit-animation-name: rotate-eyebrow-right;
 	-webkit-animation-duration: 7s;
 	-webkit-animation-iteration-count: infinite;*/
-
   -webkit-transform-origin: left 50%;
   -webkit-animation: rotate-eyebrow-right 2s ease-in-out infinite alternate;
 }
@@ -284,7 +283,6 @@ textarea:focus {
   /*-webkit-animation-name: eye-pupil;
 	-webkit-animation-duration: 7s;
 	-webkit-animation-iteration-count: infinite;*/
-
   -webkit-transform-origin: 0 0;
   -webkit-animation: eye-pupil 2s linear infinite alternate;
 }
@@ -292,7 +290,6 @@ textarea:focus {
   /*-webkit-animation-name: eye-pupil;
 	-webkit-animation-duration: 7s;
 	-webkit-animation-iteration-count: infinite;*/
-
   -webkit-transform-origin: 0 0;
   -webkit-animation: eye-pupil-r 2s linear infinite alternate;
 }
@@ -300,7 +297,6 @@ textarea:focus {
   /*	-webkit-animation-name: leg-a;
 	-webkit-animation-duration: 5s;
 	-webkit-animation-iteration-count: infinite;*/
-
   -webkit-transform-origin: 0 0;
   -webkit-transform: translate(5px, 0) rotate(1deg);
   -webkit-animation: leg-a 2s linear infinite alternate;
@@ -309,7 +305,6 @@ textarea:focus {
   /*-webkit-animation-name: leg-b;
 	-webkit-animation-duration: 5s;
 	-webkit-animation-iteration-count: infinite;*/
-
   -webkit-transform-origin: 0 0;
   -webkit-transform: translate(5px, 0) rotate(-1deg);
   -webkit-animation: leg-b 2s linear infinite alternate;
@@ -692,7 +687,6 @@ body {
   /*-moz-animation-name: rotate-eyebrow-right;
 	-moz-animation-duration: 7s;
 	-moz-animation-iteration-count: infinite;*/
-
   -moz-transform-origin: left 50%;
   -moz-animation: rotate-eyebrow-right 2s ease-in-out infinite alternate;
 }
@@ -700,7 +694,6 @@ body {
   /*-moz-animation-name: eye-pupil;
 	-moz-animation-duration: 7s;
 	-moz-animation-iteration-count: infinite;*/
-
   -moz-transform-origin: 0 0;
   -moz-animation: eye-pupil 2s linear infinite alternate;
 }
@@ -708,7 +701,6 @@ body {
   /*-moz-animation-name: eye-pupil;
 	-moz-animation-duration: 7s;
 	-moz-animation-iteration-count: infinite;*/
-
   -moz-transform-origin: 0 0;
   -moz-animation: eye-pupil-r 2s linear infinite alternate;
 }
@@ -716,7 +708,6 @@ body {
   /*	-moz-animation-name: leg-a;
 	-moz-animation-duration: 5s;
 	-moz-animation-iteration-count: infinite;*/
-
   -moz-transform-origin: 0 0;
   -moz-transform: translate(5px, 0) rotate(1deg);
   -moz-animation: leg-a 2s linear infinite alternate;
@@ -725,7 +716,6 @@ body {
   /*-moz-animation-name: leg-b;
 	-moz-animation-duration: 5s;
 	-moz-animation-iteration-count: infinite;*/
-
   -moz-transform-origin: 0 0;
   -moz-transform: translate(5px, 0) rotate(-1deg);
   -moz-animation: leg-b 2s linear infinite alternate;

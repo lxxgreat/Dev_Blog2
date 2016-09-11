@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import json
+import pprint
 import datetime
 import PyRSS2Gen
+
 from werkzeug.security import generate_password_hash
 from mongoengine.errors import NotUniqueError, ValidationError
 from flask import make_response
@@ -13,13 +15,23 @@ from model.models import (User, Diary, Category, Page, Tag, Comment,
                           CommentEm, StaticPage)
 from utils.helper import SiteHelpers
 
+import mongoengine as me
+
+DEFAULT_CONNECTION_NAME = me.connection.DEFAULT_CONNECTION_NAME
+db_config = Config.MONGODB_SETTINGS
+connection = me.connect(**db_config)
+me.connection.get_db()
 
 class UserDispatcher(object):
+    _connection = connection
+
     """User dispatcher.
     Return author profile
     """
     def get_profile(self):
         """Return User object."""
+        pprint.pprint(User.objects)
+
         return User.objects.first()
 
     def generate_user(self, username, password):
@@ -115,7 +127,8 @@ class CommentDispatcher(object):
         Return:
             None
         """
-        comment = Comment.objects.get_or_404(pk=comment_id)
+        comment = Comment.objects(pk=comment_id)
+        print 'comment:' + str(comment)
 
         diary = Diary.objects(pk=comment.diary.pk)
 
@@ -315,9 +328,18 @@ class DiaryDispatcher(object):
         diary.tags = splited_tags
         diary.save()
 
-        a, cat = Category.objects.get_or_create(name=category,
-                                                defaults={'diaries': [diary]})
-        if not cat:
+        print 'category:' + str(category)
+
+        created = False
+        objs = Category.objects(name=category)
+        if len(objs) == 0:
+            item = Category(name=category)
+            item.diaries = [diary]
+            item.save()
+            created = True
+
+        print 'created:' + str(created)
+        if not created:
             Category.objects(name=category).update_one(push__diaries=diary)
             if old_cat is not None:
                 Category.objects(name=old_cat).update_one(pull__diaries=diary)
@@ -325,11 +347,17 @@ class DiaryDispatcher(object):
         for t in old_tags:
             Tag.objects(name=t).update_one(pull__diaries=diary)
 
-        for i in splited_tags:
-            b, tag = Tag.objects.get_or_create(name=i,
-                                               defaults={'diaries': [diary]})
-            if not tag:
-                Tag.objects(name=i).update_one(push__diaries=diary)
+        for tag in splited_tags:
+            created = False
+            objs = Category.objects(name=tag)
+            if len(objs) == 0:
+                item = Tag(name=tag)
+                item.diaries = [diary]
+                item.save()
+                created = True
+
+            if not created:
+                Tag.objects(name=tag).update_one(push__diaries=diary)
 
         return
 
@@ -439,7 +467,7 @@ class CategoryDispatcher(object):
         Return:
             None
         """
-        return Category.objects.get_or_404(name=cat_name).delete()
+        return Category.objects(name=cat_name).delete()
 
 
 class TagDispatcher(object):
@@ -530,7 +558,7 @@ class PageDispatcher(object):
         return StaticPage.objects.order_by(order)
 
     def del_cmspage_by_url(self, page_url):
-        return StaticPage.objects.get_or_404(url=page_url).delete()
+        return StaticPage.objects(url=page_url).delete()
 
     def edit_or_create_page(self, title, html, url):
         """CMS page edit or create.

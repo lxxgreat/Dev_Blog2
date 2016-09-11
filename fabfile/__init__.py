@@ -9,8 +9,11 @@ from mongoengine import connect
 from blog.config import Config
 from blog.model.models import User
 
-connect(Config.MONGODB_SETTINGS.get('DB'))
+import mongoengine as me
 
+db_config = Config.MONGODB_SETTINGS
+connection = me.connect(**db_config)
+me.connection.get_db()
 
 @task
 def deploy():
@@ -21,7 +24,7 @@ def deploy():
 
 @task
 def start():
-    local("python blog/runserver.py --port=8000")
+    local("python blog/runserver.py --port=1128")
 
 
 @task
@@ -36,6 +39,7 @@ def build():
     user.save()
     print("Default Admin add Success!")
     execute(deploy)
+    me.connection.disconnect()
 
 
 @task
@@ -105,9 +109,9 @@ def update():
 @task
 def backup_database():
     local("sudo rm -rf ~/mongobak")
-    local("mongodump -d %s -o ~/mongobak" % Config.MONGODB_SETTINGS.get('DB'))
+    local("mongodump -d %s -o ~/mongobak" % Config.MONGODB_SETTINGS.get('db'))
     local("tar -czvPf ~/%s_%s.tar.gz ~/mongobak/*" %
-          (Config.MONGODB_SETTINGS.get('DB'),
+          (Config.MONGODB_SETTINGS.get('db'),
            datetime.datetime.now().strftime("%Y%m%d%H%M%S")))
 
 

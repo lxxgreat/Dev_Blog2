@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
+import pprint
+
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask import Blueprint, render_template, url_for, request, redirect, flash
 from flask_login import (current_user, login_required,
@@ -62,14 +64,20 @@ def login():
         POST:
             none
     """
+    user = UserDispatcher().get_profile()
+    print('user.password:' + str(user.password))
+
     if request.method == "POST" and "username" in request.form:
+        pprint.pprint(request.form)
         password = request.form["password"]
         user = UserDispatcher().get_profile()
-
+        print 'user:' + str(user)
         if user and check_password_hash(user.password, password):
+            print 'user:' + str(user)
             login_user(User(user.name, user.pk))
             return redirect(request.args.get("next") or url_for("admin.index"))
         else:
+            print 'url_for:' + str(url_for("admin.login"))
             return redirect(url_for("admin.login"))
     else:
         return render_template(templates["login"])
@@ -383,7 +391,7 @@ def account_upload_avatar():
     if request.method == 'POST':
         data = request.files['userfile']
         filename = data.filename.encode('utf-8')
-        success, url = OtherDispatcher().up_to_upyun('account', data, filename)
+        success, url = OtherDispatcher().up_img_to_upyun('account', data, filename)
 
         return json.dumps({'success': success, 'url': url})
 
